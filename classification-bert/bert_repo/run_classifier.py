@@ -26,6 +26,11 @@ import optimization
 import tokenization
 import tensorflow as tf
 
+import numpy as np
+import pandas as pd
+import json
+import base64
+
 flags = tf.flags
 
 FLAGS = flags.FLAGS
@@ -74,6 +79,8 @@ flags.DEFINE_bool("do_eval", False, "Whether to run eval on the dev set.")
 flags.DEFINE_bool(
     "do_predict", False,
     "Whether to run the model in inference mode on the test set.")
+
+flags.DEFINE_bool("do_export", False, "Whether to run export as SavedModel.")
 
 flags.DEFINE_integer("train_batch_size", 32, "Total batch size for training.")
 
@@ -369,6 +376,44 @@ class ColaProcessor(DataProcessor):
       else:
         text_a = tokenization.convert_to_unicode(line[3])
         label = tokenization.convert_to_unicode(line[1])
+      examples.append(
+          InputExample(guid=guid, text_a=text_a, text_b=None, label=label))
+    return examples
+
+
+class JpProcessor(DataProcessor):
+  """Processor for the Japanese data set."""
+
+  def read_tsv(self, path):
+    df = pd.read_csv(path, sep="\t")
+    return [(str(text), str(label)) for text,label in zip(df['text'], df['label'])]
+
+  def get_train_examples(self, data_dir):
+    """See base class."""
+    return self._create_examples(
+        self.read_tsv(os.path.join(data_dir, "train.tsv")), "train")
+
+  def get_dev_examples(self, data_dir):
+    """See base class."""
+    return self._create_examples(
+        self.read_tsv(os.path.join(data_dir, "dev.tsv")), "dev")
+
+  def get_test_examples(self, data_dir):
+    """See base class."""
+    return self._create_examples(
+      self.read_tsv(os.path.join(data_dir, "test.tsv")), "test")
+
+  def get_labels(self):
+    """See base class."""
+    return ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+
+  def _create_examples(self, lines, set_type):
+    """Creates examples for the training and dev sets."""
+    examples = []
+    for (i, line) in enumerate(lines):
+      guid = "%s-%s" % (set_type, i)
+      text_a = tokenization.convert_to_unicode(line[0])
+      label = tokenization.convert_to_unicode(line[1])
       examples.append(
           InputExample(guid=guid, text_a=text_a, text_b=None, label=label))
     return examples
@@ -788,12 +833,13 @@ def main(_):
       "mnli": MnliProcessor,
       "mrpc": MrpcProcessor,
       "xnli": XnliProcessor,
+      "jp": JpProcessor,
   }
 
   tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,
                                                 FLAGS.init_checkpoint)
 
-  if not FLAGS.do_train and not FLAGS.do_eval and not FLAGS.do_predict:
+  if not FLAGS.do_train and not FLAGS.do_eval and not FLAGS.do_predict and not FLAGS.do_export:
     raise ValueError(
         "At least one of `do_train`, `do_eval` or `do_predict' must be True.")
 
@@ -970,6 +1016,57 @@ def main(_):
         writer.write(output_line)
         num_written_lines += 1
     assert num_written_lines == num_actual_predict_examples
+    
+  if FLAGS.do_export:
+    def example_serving_input_fn():
+        feature_spec = {
+          "input_ids": tf.FixedLenFeature([FLAGS.max_seq_length], tf.int64),
+          "input_mask": tf.FixedLenFeature([FLAGS.max_seq_length], tf.int64),
+          "segment_ids": tf.FixedLenFeature([FLAGS.max_seq_length], tf.int64),
+          "label_ids": tf.FixedLenFeature([], tf.int64),
+        }
+        serialized_tf_example = tf.placeholder(dtype=tf.string, shape=None, name='input_string_text')
+        receiver_tensors = {'examples': serialized_tf_example}
+        features = tf.parse_example(serialized_tf_example, feature_spec)
+        return tf.estimator.export.ServingInputReceiver(features, receiver_tensors)
+    
+    def json_serving_input_fn():
+        inputs = {}
+        inputs["input_ids"] = tf.placeholder(shape=[1, 128], dtype=tf.int64)
+        inputs["input_mask"] = tf.placeholder(shape=[1, 128], dtype=tf.int64)
+        inputs["segment_ids"] = tf.placeholder(shape=[1, 128], dtype=tf.int64)
+        inputs["label_ids"] = tf.placeholder(shape=None, dtype=tf.int64)
+        
+        return tf.estimator.export.ServingInputReceiver(inputs, inputs)
+    
+    def plain_text_serving_input_fn():
+        input_string = tf.placeholder(dtype=tf.string, shape=None, name='input_string_text')
+        receiver_tensors = {'input_text': input_string}
+        input_examples = [InputExample(guid="1-1", text_a = str(input_string), text_b = None, label = "0")]
+        input_features = convert_examples_to_features(input_examples, label_list, FLAGS.max_seq_length, tokenizer)
+
+        variables = {}
+        for i in input_features:
+            variables["input_ids"] = i.input_ids
+            variables["input_mask"] = i.input_mask
+            variables["label_ids"] = i.label_id
+            variables["segment_ids"] = i.segment_ids
+
+        feature_spec = {
+          "input_ids" : tf.FixedLenFeature([FLAGS.max_seq_length], tf.int64),
+          "input_mask" : tf.FixedLenFeature([FLAGS.max_seq_length], tf.int64),
+          "label_ids" :  tf.FixedLenFeature([], tf.int64),
+          "segment_ids" : tf.FixedLenFeature([FLAGS.max_seq_length], tf.int64),
+        }
+
+        string_variables = json.dumps(variables)
+        encode_input = base64.b64encode(string_variables.encode('utf-8'))
+        encode_string = base64.decodestring(encode_input)
+        features_to_input = tf.parse_example([encode_string], feature_spec)
+        return tf.estimator.export.ServingInputReceiver(features_to_input, receiver_tensors)
+    
+    estimator._export_to_tpu = False
+    estimator.export_saved_model("./saved_model", json_serving_input_fn)
 
 
 if __name__ == "__main__":
