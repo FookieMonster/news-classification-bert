@@ -1032,38 +1032,11 @@ def main(_):
     
     def json_serving_input_fn():
         inputs = {}
-        inputs["input_ids"] = tf.placeholder(shape=[1, 128], dtype=tf.int64)
-        inputs["input_mask"] = tf.placeholder(shape=[1, 128], dtype=tf.int64)
-        inputs["segment_ids"] = tf.placeholder(shape=[1, 128], dtype=tf.int64)
+        inputs["input_ids"] = tf.placeholder(shape=[None, FLAGS.max_seq_length], dtype=tf.int64)
+        inputs["input_mask"] = tf.placeholder(shape=[None, FLAGS.max_seq_length], dtype=tf.int64)
+        inputs["segment_ids"] = tf.placeholder(shape=[None, FLAGS.max_seq_length], dtype=tf.int64)
         inputs["label_ids"] = tf.placeholder(shape=None, dtype=tf.int64)
-        
         return tf.estimator.export.ServingInputReceiver(inputs, inputs)
-    
-    def plain_text_serving_input_fn():
-        input_string = tf.placeholder(dtype=tf.string, shape=None, name='input_string_text')
-        receiver_tensors = {'input_text': input_string}
-        input_examples = [InputExample(guid="1-1", text_a = str(input_string), text_b = None, label = "0")]
-        input_features = convert_examples_to_features(input_examples, label_list, FLAGS.max_seq_length, tokenizer)
-
-        variables = {}
-        for i in input_features:
-            variables["input_ids"] = i.input_ids
-            variables["input_mask"] = i.input_mask
-            variables["label_ids"] = i.label_id
-            variables["segment_ids"] = i.segment_ids
-
-        feature_spec = {
-          "input_ids" : tf.FixedLenFeature([FLAGS.max_seq_length], tf.int64),
-          "input_mask" : tf.FixedLenFeature([FLAGS.max_seq_length], tf.int64),
-          "label_ids" :  tf.FixedLenFeature([], tf.int64),
-          "segment_ids" : tf.FixedLenFeature([FLAGS.max_seq_length], tf.int64),
-        }
-
-        string_variables = json.dumps(variables)
-        encode_input = base64.b64encode(string_variables.encode('utf-8'))
-        encode_string = base64.decodestring(encode_input)
-        features_to_input = tf.parse_example([encode_string], feature_spec)
-        return tf.estimator.export.ServingInputReceiver(features_to_input, receiver_tensors)
     
     estimator._export_to_tpu = False
     estimator.export_saved_model("./saved_model", json_serving_input_fn)
