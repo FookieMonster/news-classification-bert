@@ -1,24 +1,26 @@
 package com.fookiemonsters.demo.model.viewmodel;
 
+import java.util.List;
+
 public class NewsClassificationRequest {
 
-	private String title;
+	private List<String> titles;
 
 	public static NewsClassificationRequest createNewsClassificationRequest(
-			String title) {
+			List<String> titles) {
 
 		NewsClassificationRequest req = new NewsClassificationRequest();
-		req.setTitle(title);
+		req.setTitles(titles);
 		return req;
 	}
 
-	public String getTitle() {
+	public List<String> getTitles() {
 
-		return title;
+		return titles;
 	}
 
-	public void setTitle(String title) {
+	public void setTitles(List<String> titles) {
 
-		this.title = title;
+		this.titles = titles;
 	}
 }

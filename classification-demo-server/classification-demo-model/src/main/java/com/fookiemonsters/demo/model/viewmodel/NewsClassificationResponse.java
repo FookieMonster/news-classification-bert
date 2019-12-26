@@ -1,36 +1,38 @@
 package com.fookiemonsters.demo.model.viewmodel;
 
+import java.util.List;
+
 public class NewsClassificationResponse {
 
-	private String title;
-	private int label;
+	private List<String> titles;
+	private List<Integer> labels;
 
 	public static NewsClassificationResponse createNewsClassificationResponse(
-			String title, int label) {
+			List<String> titles, List<Integer> labels) {
 
 		NewsClassificationResponse res = new NewsClassificationResponse();
-		res.setTitle(title);
-		res.setLabel(label);
+		res.setTitles(titles);
+		res.setLabels(labels);
 		return res;
 	}
 
-	public String getTitle() {
+	public List<String> getTitles() {
 
-		return title;
+		return titles;
 	}
 
-	public void setTitle(String title) {
+	public void setTitles(List<String> titles) {
 
-		this.title = title;
+		this.titles = titles;
 	}
 
-	public int getLabel() {
+	public List<Integer> getLabels() {
 
-		return label;
+		return labels;
 	}
 
-	public void setLabel(int label) {
+	public void setLabels(List<Integer> labels) {
 
-		this.label = label;
+		this.labels = labels;
 	}
 }
