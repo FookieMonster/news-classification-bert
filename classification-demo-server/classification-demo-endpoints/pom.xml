@@ -73,7 +73,7 @@
                 <configuration>
                     <hostname>${appengine.project.id}.appspot.com</hostname>
                     <serviceClasses>
-                        <serviceClass>com.fookiemonsters.demo.endpoints.ClassificationEndpoint</serviceClass>
+                        <serviceClass>com.fookiemonsters.demo.endpoints.NewsClassificationEndpoint</serviceClass>
                     </serviceClasses>
                 </configuration>
             </plugin>

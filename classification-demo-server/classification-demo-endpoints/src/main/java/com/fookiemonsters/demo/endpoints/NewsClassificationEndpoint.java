@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static com.google.api.server.spi.config.ApiMethod.HttpMethod.POST;
 
-@Api(name = "news_classification", version = "v1")
+@Api(name = "newsclassification", version = "v1")
 public class NewsClassificationEndpoint {
 
 	@Inject
