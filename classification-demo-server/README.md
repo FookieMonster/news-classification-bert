@@ -29,12 +29,6 @@ $ mvn clean install
 $ mvn appengine:update -pl classification-demo
 ```
 
-### PROXYサーバのデプロイ （App Engine for Python）
-```
-$ cd ./classification-proxy-server
-$ gcloud app deploy --version=v100-alpha1
-```
-
 ### 新しい開発バージョンへの変更
 ```
 $ mvn versions:set -DnewVersion=1.0.0.Alpha2-SNAPSHOT -DgenerateBackupPoms=false
