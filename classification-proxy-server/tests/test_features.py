@@ -1,6 +1,21 @@
 import unittest
 import tokenization
-import tensorflow as tf
+
+
+class TestFeatures(unittest.TestCase):
+
+    def test_features(self):
+        text_a = tokenization.convert_to_unicode("急速充電や大容量バッテリー、エコナビ対応のXi対応ドコモスマホ「ELUGA power P-07D」の気になる価格は？")
+        label = tokenization.convert_to_unicode("0")
+        labels = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+
+        example = InputExample(guid="", text_a=text_a, text_b=None, label=label)
+        tokenizer = tokenization.FullTokenizer(vocab_file='../vocab.txt', do_lower_case=False)
+        feature = convert_single_example(0, example, labels, 128, tokenizer)
+
+        json_str = '{{"input_ids":{0},"input_mask":{1},"segment_ids":{2},"label_ids":{3}}}' \
+            .format(feature.input_ids, feature.input_mask, feature.segment_ids, [feature.label_id])
+        print(json_str)
 
 
 class InputExample(object):
@@ -133,15 +148,6 @@ def convert_single_example(ex_index, example, label_list, max_seq_length,
   assert len(segment_ids) == max_seq_length
 
   label_id = label_map[example.label]
-  if ex_index < 5:
-    tf.logging.info("*** Example ***")
-    tf.logging.info("guid: %s" % (example.guid))
-    tf.logging.info("tokens: %s" % " ".join(
-        [tokenization.printable_text(x) for x in tokens]))
-    tf.logging.info("input_ids: %s" % " ".join([str(x) for x in input_ids]))
-    tf.logging.info("input_mask: %s" % " ".join([str(x) for x in input_mask]))
-    tf.logging.info("segment_ids: %s" % " ".join([str(x) for x in segment_ids]))
-    tf.logging.info("label: %s (id = %d)" % (example.label, label_id))
 
   feature = InputFeatures(
       input_ids=input_ids,
@@ -150,22 +156,6 @@ def convert_single_example(ex_index, example, label_list, max_seq_length,
       label_id=label_id,
       is_real_example=True)
   return feature
-
-
-class TestFeatures(unittest.TestCase):
-
-    def test_features(self):
-        text_a = tokenization.convert_to_unicode("急速充電や大容量バッテリー、エコナビ対応のXi対応ドコモスマホ「ELUGA power P-07D」の気になる価格は？")
-        label = tokenization.convert_to_unicode("0")
-        labels = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
-
-        example = InputExample(guid="", text_a=text_a, text_b=None, label=label)
-        tokenizer = tokenization.FullTokenizer(vocab_file='../vocab.txt', do_lower_case=False)
-        feature = convert_single_example(0, example, labels, 128, tokenizer)
-
-        json_str = '{{"input_ids":{0},"input_mask":{1},"segment_ids":{2},"label_ids":{3}}}' \
-            .format(feature.input_ids, feature.input_mask, feature.segment_ids, [feature.label_id])
-        print(json_str)
 
 
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 import unittest
-import numpy as np
+import pandas as pd
 import json
+import feature
 from googleapiclient import discovery
 from google.oauth2 import service_account
 
@@ -8,14 +9,25 @@ from google.oauth2 import service_account
 class TestPrediction(unittest.TestCase):
 
     def test_predict(self):
-        json_str = '{{"input_ids":{0},"input_mask":{1},"segment_ids":{2},"label_ids":{3}}}' \
-            .format(np.zeros((128), int).tolist(), np.zeros((128), int).tolist(), np.zeros((128), int).tolist(), [0])
-        print(json_str)
+        input_df = pd.read_json('../input_text.jsonl', orient='records', lines=True)
 
-        instance = json.loads(json_str)
-        print(instance)
+        label = "0"
+        labels = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+        max_seq_length = 128
 
-        predictions = self.predict_json('news-classification-2020', 'news_classification', [instance], 'v1')
+        instances = []
+
+        for text in input_df['text']:
+            features = feature.convert_text_to_features(text=text, label=label, label_list=labels,
+                                                        max_seq_length=max_seq_length, vocab_file='../vocab.txt')
+            json_str = '{{"input_ids":{0},"input_mask":{1},"segment_ids":{2},"label_ids":{3}}}' \
+                .format(features.input_ids, features.input_mask, features.segment_ids, [features.label_id])
+            instance = json.loads(json_str)
+            instances.append(instance)
+
+        print(instances)
+
+        predictions = self.predict_json('news-classification-2020', 'news_classification', instances, 'v1')
         print(predictions)
 
     def predict_json(self, project, model, instances, version=None):
