@@ -3,7 +3,7 @@ import pandas as pd
 import json
 
 from googleapiclient import discovery
-from google.oauth2 import service_account
+from oauth2client.client import GoogleCredentials
 from feature import convert_text_to_features
 
 
@@ -32,10 +32,8 @@ class TestPrediction(unittest.TestCase):
         print(predictions)
 
     def predict_json(self, project, model, instances, version=None):
-        credentials = service_account.Credentials.from_service_account_file(
-            '../news-classification-2020-1221a9735c2a.json',
-            scopes=["https://www.googleapis.com/auth/cloud-platform"],
-        )
+        # gcloud auth application-default login
+        credentials = GoogleCredentials.get_application_default()
 
         service = discovery.build('ml', 'v1', credentials=credentials)
         name = 'projects/{}/models/{}'.format(project, model)
