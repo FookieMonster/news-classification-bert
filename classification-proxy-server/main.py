@@ -10,9 +10,7 @@ app = Flask(__name__)
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
-
-    #jsonl = request.data
-    jsonl = 'input_text.jsonl'
+    jsonl = request.data
     input_df = pd.read_json(jsonl, orient='records', lines=True)
 
     label = "0"
