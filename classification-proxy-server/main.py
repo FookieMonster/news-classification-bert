@@ -1,9 +1,19 @@
 import pandas as pd
 import json
-import feature
+
+from flask import Flask, request
 from googleapiclient import discovery
-from flask import Flask, request, jsonify
 from oauth2client.client import GoogleCredentials
+from feature import convert_text_to_features
+
+PROJECT_ID = 'news-classification-2020'
+MODEL_NAME = 'news_classification'
+MODEL_VERSION = 'v1'
+
+FEATURES_FORMAT = '{{"input_ids": {0}, "input_mask": {1}, "segment_ids": {2}, "label_ids":{3}}}'
+LABELS = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+MAX_SEQ_LEN = 128
+VOCAB_FILE = 'vocab.txt'
 
 app = Flask(__name__)
 
@@ -13,22 +23,17 @@ def predict():
     jsonl = request.data
     input_df = pd.read_json(jsonl, orient='records', lines=True)
 
-    label = "0"
-    labels = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
-    max_seq_length = 128
-
     instances = []
 
     for text in input_df['text']:
-        features = feature.convert_text_to_features(text=text, label=label, label_list=labels, max_seq_length=max_seq_length, vocab_file='vocab.txt')
-        json_str = '{{"input_ids":{0},"input_mask":{1},"segment_ids":{2},"label_ids":{3}}}' \
-            .format(features.input_ids, features.input_mask, features.segment_ids, [features.label_id])
+        features = convert_text_to_features(text=text, label=LABELS[0], label_list=LABELS, max_seq_length=MAX_SEQ_LEN, vocab_file=VOCAB_FILE)
+        json_str = FEATURES_FORMAT.format(features.input_ids, features.input_mask, features.segment_ids, [features.label_id])
         instance = json.loads(json_str)
         instances.append(instance)
 
-    predictions = predict_json('news-classification-2020', 'news_classification', instances, 'v1')
+    predictions = predict_json(PROJECT_ID, MODEL_NAME, instances, MODEL_VERSION)
 
-    return jsonify(predictions)
+    return convert_to_jsonl(predictions)
 
 
 def predict_json(project, model, instances, version=None):
@@ -48,6 +53,13 @@ def predict_json(project, model, instances, version=None):
         raise RuntimeError(response['error'])
 
     return response['predictions']
+
+
+def convert_to_jsonl(predictions):
+    json_str = ''
+    for pred in predictions:
+        json_str += '{{"prediction": {0}}}\n'.format(pred)
+    return json_str
 
 
 if __name__ == '__main__':

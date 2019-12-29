@@ -1,9 +1,10 @@
 import unittest
 import pandas as pd
 import json
-import feature
+
 from googleapiclient import discovery
 from google.oauth2 import service_account
+from feature import convert_text_to_features
 
 
 class TestPrediction(unittest.TestCase):
@@ -18,7 +19,7 @@ class TestPrediction(unittest.TestCase):
         instances = []
 
         for text in input_df['text']:
-            features = feature.convert_text_to_features(text=text, label=label, label_list=labels,
+            features = convert_text_to_features(text=text, label=label, label_list=labels,
                                                         max_seq_length=max_seq_length, vocab_file='../vocab.txt')
             json_str = '{{"input_ids":{0},"input_mask":{1},"segment_ids":{2},"label_ids":{3}}}' \
                 .format(features.input_ids, features.input_mask, features.segment_ids, [features.label_id])
