@@ -1,7 +1,9 @@
 package com.fookiemonsters.demo.service.module;
 
 import com.fookiemonsters.demo.service.NewsClassificationService;
+import com.fookiemonsters.demo.service.NewsRssService;
 import com.fookiemonsters.demo.service.impl.NewsClassificationServiceImpl;
+import com.fookiemonsters.demo.service.impl.NewsRssServiceImpl;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.inject.AbstractModule;
@@ -15,6 +17,7 @@ public class MyServiceModule extends AbstractModule {
 	protected void configure() {
 
 		bind(NewsClassificationService.class).toInstance(new NewsClassificationServiceImpl());
+		bind(NewsRssService.class).toInstance(new NewsRssServiceImpl());
 	}
 
 	@Provides

@@ -1,5 +1,7 @@
 package com.fookiemonsters.demo.service;
 
+import com.fookiemonsters.demo.model.viewmodel.NewsRssResponse;
+import com.fookiemonsters.demo.model.viewmodel.NewsRssResult;
 import com.fookiemonsters.demo.service.module.MyServiceModule;
 import com.fookiemonsters.demo.service.module.MyServiceTestModule;
 import com.google.gson.Gson;
@@ -19,16 +21,31 @@ import java.util.logging.Logger;
 public class NewsRssServiceIT {
 
 	@Inject
+	private NewsRssService service;
+
+	@Inject
 	private Gson gson;
 
 	@Inject
 	private Logger log;
 
 	@Test
+	public void test() throws Exception {
+
+		NewsRssResponse response = service.retrieveFeed(
+				"https://news.livedoor.com/rss/article/vender/kadench");
+
+		for (NewsRssResult result : response.getResults()) {
+			log.info(gson.toJson(result));
+		}
+	}
+
+	@Test
 	public void testRss() throws Exception {
 
 		FeedFetcher fetcher = new HttpURLFeedFetcher();
-		SyndFeed feed = fetcher.retrieveFeed(new URL("https://news.livedoor.com/rss/article/vender/kadench"));
+		SyndFeed feed = fetcher.retrieveFeed(
+				new URL("https://news.livedoor.com/rss/article/vender/kadench"));
 		List<SyndEntry> entries = (List<SyndEntry>) feed.getEntries();
 
 		for (SyndEntry entry : entries) {
