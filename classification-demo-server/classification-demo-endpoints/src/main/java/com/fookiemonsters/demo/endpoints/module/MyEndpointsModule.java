@@ -1,6 +1,7 @@
 package com.fookiemonsters.demo.endpoints.module;
 
 import com.fookiemonsters.demo.endpoints.NewsClassificationEndpoint;
+import com.fookiemonsters.demo.endpoints.NewsRssEndpoint;
 import com.google.api.control.ServiceManagementConfigFilter;
 import com.google.api.control.extensions.appengine.GoogleAppEngineControlFilter;
 import com.google.api.server.spi.guice.EndpointsModule;
@@ -31,8 +32,8 @@ public class MyEndpointsModule extends EndpointsModule {
 		filter("/_ah/api/*").through(GoogleAppEngineControlFilter.class, apiController);
 
 		bind(NewsClassificationEndpoint.class).toInstance(new NewsClassificationEndpoint());
+		bind(NewsRssEndpoint.class).toInstance(new NewsRssEndpoint());
 
-		configureEndpoints("/_ah/api/*",
-				ImmutableList.of(NewsClassificationEndpoint.class));
+		configureEndpoints("/_ah/api/*", ImmutableList.of(NewsClassificationEndpoint.class, NewsRssEndpoint.class));
 	}
 }

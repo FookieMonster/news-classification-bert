@@ -74,6 +74,7 @@
                     <hostname>${appengine.project.id}.appspot.com</hostname>
                     <serviceClasses>
                         <serviceClass>com.fookiemonsters.demo.endpoints.NewsClassificationEndpoint</serviceClass>
+                        <serviceClass>com.fookiemonsters.demo.endpoints.NewsRssEndpoint</serviceClass>
                     </serviceClasses>
                 </configuration>
             </plugin>
