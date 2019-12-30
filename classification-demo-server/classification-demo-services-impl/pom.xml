@@ -60,6 +60,16 @@
             <artifactId>google-http-client-jackson2</artifactId>
             <version>${google.http.client.version}</version>
         </dependency>
+        <dependency>
+            <groupId>rome</groupId>
+            <artifactId>rome</artifactId>
+            <version>${rome.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>rome</groupId>
+            <artifactId>rome-fetcher</artifactId>
+            <version>${rome.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
