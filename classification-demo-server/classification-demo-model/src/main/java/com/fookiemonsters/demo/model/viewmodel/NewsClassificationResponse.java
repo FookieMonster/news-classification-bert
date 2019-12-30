@@ -4,35 +4,15 @@ import java.util.List;
 
 public class NewsClassificationResponse {
 
-	private List<String> titles;
-	private List<Integer> labels;
+	private List<NewsClassificationResult> results;
 
-	public static NewsClassificationResponse createNewsClassificationResponse(
-			List<String> titles, List<Integer> labels) {
+	public List<NewsClassificationResult> getResults() {
 
-		NewsClassificationResponse res = new NewsClassificationResponse();
-		res.setTitles(titles);
-		res.setLabels(labels);
-		return res;
+		return results;
 	}
 
-	public List<String> getTitles() {
+	public void setResults(List<NewsClassificationResult> results) {
 
-		return titles;
-	}
-
-	public void setTitles(List<String> titles) {
-
-		this.titles = titles;
-	}
-
-	public List<Integer> getLabels() {
-
-		return labels;
-	}
-
-	public void setLabels(List<Integer> labels) {
-
-		this.labels = labels;
+		this.results = results;
 	}
 }
