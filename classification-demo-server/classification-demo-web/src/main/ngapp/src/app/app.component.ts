@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { environment } from "../environments/environment.prod";
+import { environment } from '../environments/environment.prod';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,6 @@ import { environment } from "../environments/environment.prod";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Twitter User Classification';
+  title = 'News Classification (BERT)';
   version = environment.version;
 }

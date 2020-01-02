@@ -1,0 +1,60 @@
+<h3 class="first">Demo</h3>
+<div style="margin: 8px">
+  <button pButton type="button" (click)="onStart()" icon="fas fa-rss" label="最新ニュースを取得して分類"
+          [disabled]="visibleProgressBar"></button>
+</div>
+
+<p-progressBar *ngIf="visibleProgressBar" mode="indeterminate" [style]="{ 'width':'100%', 'height': '6px' }"></p-progressBar>
+<p-table [columns]="cols" [value]="feeds" dataKey="title">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th style="width: 3em"></th>
+      <th *ngFor="let col of columns">
+        {{col.header}}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+    <tr>
+      <td>
+        <a href="#" [pRowToggler]="rowData">
+          <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+        </a>
+      </td>
+      <td *ngFor="let col of columns">
+        {{rowData[col.field]}}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+    <tr>
+      <td [attr.colspan]="columns.length + 1">
+        <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
+          <div class="ui-g-12 ui-md-9">
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <b>Title:</b> {{rowData.title}}
+              </div>
+              <div class="ui-g-12">
+                <b>Description:</b> {{rowData.description}}
+              </div>
+              <div class="ui-g-12">
+                <b>Date:</b> {{rowData.date}}
+              </div>
+              <div class="ui-g-12">
+                <b>Link:</b> {{rowData.link}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage" let-columns>
+    <tr>
+      <td [attr.colspan]="columns.length + 1">
+        No records found
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
