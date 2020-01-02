@@ -1,5 +1,6 @@
 <h3 class="first">Demo</h3>
 <div style="margin: 8px">
+  <p-dropdown [options]="newsSites" [(ngModel)]="newsSite"></p-dropdown>
   <button pButton type="button" (click)="onStart()" icon="fas fa-rss" label="最新ニュースを取得して分類"
           [disabled]="visibleProgressBar"></button>
 </div>
@@ -21,8 +22,20 @@
           <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
         </a>
       </td>
-      <td *ngFor="let col of columns">
-        {{rowData[col.field]}}
+      <td>
+        {{rowData['title']}}
+      </td>
+      <td>
+        <div *ngIf="rowData.label != null">
+          <div *ngIf="rowData.label === newsSite.label">
+            <i class="fas fa-check-circle fa-2x greeniconcolor"></i>
+            {{rowData['label']}}
+          </div>
+          <div *ngIf="rowData.label != newsSite.label">
+            <i class="fas fa-times-circle fa-2x rediconcolor"></i>
+            {{rowData['label']}}
+          </div>
+        </div>
       </td>
     </tr>
   </ng-template>

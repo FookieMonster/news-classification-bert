@@ -11,6 +11,7 @@ import { DataTableModule } from 'primeng/datatable';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
+import {DropdownModule} from 'primeng/dropdown';
 import {
   ConfirmationService,
   ConfirmDialogModule,
@@ -40,7 +41,8 @@ import { NewsTableComponent } from './news-table/news-table.component';
     GrowlModule,
     ProgressBarModule,
     SelectButtonModule,
-    TabViewModule
+    TabViewModule,
+    DropdownModule,
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]
