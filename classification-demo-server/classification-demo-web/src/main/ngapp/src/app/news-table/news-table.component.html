@@ -1,7 +1,17 @@
-<h3 class="first">Demo</h3>
-<div style="margin: 8px">
-  <p-dropdown [options]="newsSites" [(ngModel)]="newsSite"></p-dropdown>
-  <button pButton type="button" (click)="onStart()" icon="fas fa-rss" label="最新ニュースを取得して分類"
+<h3>Description</h3>
+<p-table [value]="descriptions">
+  <ng-template pTemplate="body" let-desc>
+    <tr>
+      <td [ngStyle]="{'width': '25%'}">{{desc.name}}</td>
+      <td>{{desc.value}}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<h3>Demo</h3>
+<div class="newssites">
+    <p-dropdown [options]="newsSites" [(ngModel)]="newsSite" [disabled]="visibleProgressBar" (onChange)="onChange($event)"></p-dropdown>
+    <button pButton type="button" (click)="onStart()" icon="fas fa-rss" label="最新ニュースを取得して分類"
           [disabled]="visibleProgressBar"></button>
 </div>
 
@@ -10,7 +20,7 @@
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th style="width: 3em"></th>
-      <th *ngFor="let col of columns">
+      <th *ngFor="let col of columns" [ngStyle]="{'width': col.width}">
         {{col.header}}
       </th>
     </tr>
@@ -26,14 +36,17 @@
         {{rowData['title']}}
       </td>
       <td>
+        <div *ngIf="visibleProgressBar">
+          predict...
+        </div>
         <div *ngIf="rowData.label != null">
           <div *ngIf="rowData.label === newsSite.label">
             <i class="fas fa-check-circle fa-2x greeniconcolor"></i>
-            {{rowData['label']}}
+            {{newsSites[rowData['label']].label}}
           </div>
           <div *ngIf="rowData.label != newsSite.label">
             <i class="fas fa-times-circle fa-2x rediconcolor"></i>
-            {{rowData['label']}}
+            {{newsSites[rowData['label']].label}}
           </div>
         </div>
       </td>
