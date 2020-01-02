@@ -5,4 +5,5 @@ export class NewsRssResult {
   description: string;
   date: string;
   link: string;
+  label: number;
 }

@@ -1,4 +1,4 @@
 export class NewsClassificationRequest {
 
-  titles: string[];
+  titles: string[] = [];
 }
