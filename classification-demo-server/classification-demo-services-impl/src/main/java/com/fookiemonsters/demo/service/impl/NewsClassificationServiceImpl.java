@@ -11,9 +11,11 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.inject.Inject;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import static com.google.api.client.http.ByteArrayContent.fromString;
 
@@ -22,11 +24,15 @@ public class NewsClassificationServiceImpl
 
 	private static final String HTTP_METHOD = "POST";
 	private static final String HTTP_CONTENT_TYPE = "application/x-jsonlines";
-	private static final String HTTP_CONTENT_URL = "https://proxy-dot-news-classification-2020.appspot.com/predict";
+
+	@Inject
+	private ResourceBundle bundle;
 
 	@Override
 	public NewsClassificationResponse classify(List<String> newsTitles)
 			throws IOException {
+
+		String proxyServerUrl = bundle.getString("proxy_server_url");
 
 		String jsonLines = toJsonLines(newsTitles);
 
@@ -34,7 +40,7 @@ public class NewsClassificationServiceImpl
 		HttpRequestFactory factory = transport.createRequestFactory();
 
 		HttpContent content = fromString(HTTP_CONTENT_TYPE, jsonLines);
-		GenericUrl url = new GenericUrl(HTTP_CONTENT_URL);
+		GenericUrl url = new GenericUrl(proxyServerUrl);
 		HttpRequest request = factory.buildRequest(HTTP_METHOD, url, content);
 
 		HttpResponse response = request.execute();

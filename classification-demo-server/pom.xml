@@ -33,6 +33,7 @@
 
         <appengine.project.version>v100-alpha1</appengine.project.version>
         <appengine.project.id>news-classification-2020</appengine.project.id>
+        <proxy.server.url>https://proxy-dot-${appengine.project.id}.appspot.com/predict</proxy.server.url>
         <angular.build.environment>prod</angular.build.environment>
     </properties>
 
