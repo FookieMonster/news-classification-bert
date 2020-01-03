@@ -1,6 +1,6 @@
 # classification-demo-server
 
-## ビルドとリリース
+## ビルドとデプロイ
 
 ### Mavenビルド
 ```
