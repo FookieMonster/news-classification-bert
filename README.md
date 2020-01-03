@@ -9,7 +9,7 @@ https://web-dot-news-classification-2020.appspot.com/
 ## スクリーンショット
 ![スクリーンショット 2020-01-03 16 18 08](https://user-images.githubusercontent.com/7298626/71711638-35e45900-2e45-11ea-8523-3b1341d46781.png)
 
-## アーキテクチャ
+## システムの概要
 
 | 項目 |  |
 | --- | --- |
@@ -24,3 +24,5 @@ https://web-dot-news-classification-2020.appspot.com/
 | モデルAPIエンドポイント（REST/JSON） | https://ml.googleapis.com/v1/projects/news-classification-2020/models/news_classification/versions/v1:predict |
 | Webバックエンド |	App Engine + Cloud Endpoints（Java） |
 | Webフロントエンド | Angular（TypeScript） |
+
+## アーキテクチャ
