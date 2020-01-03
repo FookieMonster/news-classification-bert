@@ -12,6 +12,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown';
+import {FieldsetModule} from 'primeng/fieldset';
 import {
   ConfirmationService,
   ConfirmDialogModule,
@@ -43,6 +44,7 @@ import { NewsTableComponent } from './news-table/news-table.component';
     SelectButtonModule,
     TabViewModule,
     DropdownModule,
+    FieldsetModule,
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]

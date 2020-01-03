@@ -1,6 +1,11 @@
 <p-growl [value]="msgs"></p-growl>
 
-<h3>Description</h3>
+<p-fieldset legend="Description">
+  このページはBERTを使った日本語ニュース記事の分類デモWebアプリケーションです。
+  下記のプルダウンメニューからニュースサイトを選択してボタンを押すと、テキスト分類をテストすることができます。
+</p-fieldset>
+
+<h3>Architecture</h3>
 <p-table [value]="descriptions">
   <ng-template pTemplate="body" let-desc>
     <tr>

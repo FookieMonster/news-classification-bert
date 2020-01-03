@@ -40,7 +40,6 @@ export class NewsTableComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.cols = [
       { field: 'title', header: 'ニュースタイトル', width: '75%' },
       { field: 'label', header: '分類結果', width: '25%' }
@@ -62,15 +61,19 @@ export class NewsTableComponent implements OnInit {
     this.descriptions = [
       { name: '事前学習済み言語モデル', value: 'BERT: multi_cased_L-12_H-768_A-12.zip（多言語版）' },
       { name: '再学習データセット', value: 'livedoor ニュースコーパス: ldcc-20140209.tar.gz（2012年9月上旬）' },
-      { name: 'モデルサーバ', value: 'Google AI Platform Prediction' },
+      { name: 'トレーニングスクリプト', value: 'run_classifier.py（一部改変）' },
+      { name: 'トレーニング環境', value: 'AI Platform Notebooks（Tesla K80）' },
+      { name: 'モデルサーバ', value: 'AI Platform Prediction（TensorFlow 1.14.0）' },
+      { name: 'モデルマシンタイプ', value: 'n1-standard-2' },
       { name: 'モデル名', value: 'news_classification' },
       { name: 'モデルバージョン', value: 'v1' },
-      { name: 'APIエンドポイント（REST/JSON）', value: 'https://ml.googleapis.com/v1/projects/news-classification-2020/models/news_classification/versions/v1:predict' },
+      { name: 'モデルAPIエンドポイント（REST/JSON）', value: 'https://ml.googleapis.com/v1/projects/news-classification-2020/models/news_classification/versions/v1:predict' },
+      { name: 'Webバックエンド', value: 'App Engine + Cloud Endpoints（Java）' },
+      { name: 'Webフロントエンド', value: 'Angular（TypeScript）' },
     ];
   }
 
   loadRssFeeds() {
-
     this.feeds = [];
     this.predictions = [];
     this.visibleProgressBar = true;
@@ -96,9 +99,6 @@ export class NewsTableComponent implements OnInit {
   }
 
   loadPredictions() {
-
-    this.visibleProgressBar = true;
-
     const req = new NewsClassificationRequest();
     for (const feed of this.feeds) {
       req.titles.push(feed.title);
@@ -121,7 +121,6 @@ export class NewsTableComponent implements OnInit {
   }
 
   onStart() {
-
     this.loadRssFeeds();
   }
 
