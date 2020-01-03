@@ -67,7 +67,7 @@ export class NewsTableComponent implements OnInit {
       { name: 'モデルマシンタイプ', value: 'n1-standard-2' },
       { name: 'モデル名', value: 'news_classification' },
       { name: 'モデルバージョン', value: 'v1' },
-      { name: 'モデルAPIエンドポイント（REST/JSON）', value: 'https://ml.googleapis.com/v1/projects/[PROJECT_ID]/models/news_classification/versions/v1:predict' },
+      { name: 'モデルAPIエンドポイント（REST/JSON）', value: 'https://ml.googleapis.com/v1/projects/${appengine.project.id}/models/news_classification/versions/v1:predict' },
       { name: 'Webバックエンド', value: 'App Engine + Cloud Endpoints（Java）' },
       { name: 'Webフロントエンド', value: 'Angular（TypeScript）' },
     ];
