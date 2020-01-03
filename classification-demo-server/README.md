@@ -2,12 +2,6 @@
 
 ## ビルドとリリース
 
-### node.jsのパッケージをインストールする
-```
-$ cd ./classification-demo-web/src/main/ngapp
-$ npm install
-```
-
 ### Mavenビルド
 ```
 $ mvn clean install
