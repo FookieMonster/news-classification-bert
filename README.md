@@ -1,7 +1,7 @@
 # news-classification-bert
 
 ## 説明
-BERTを使った日本語ニュース記事をテキスト分類するデモWebアプリケーションです。 
+BERTを使って日本語ニュース記事をテキスト分類するデモWebアプリケーションです。 
 
 ## デモサイト
 https://web-dot-news-classification-2020.appspot.com/
