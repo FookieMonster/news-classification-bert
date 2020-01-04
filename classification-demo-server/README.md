@@ -4,11 +4,14 @@
 
 ビルドするには以下のインストールが必要です。
 - Maven
+- Google Cloud SDK
+- gcloud コマンドライン ツール（gcloud CLI）
 
-pom.xmlを編集して[YOUR_PROJECT_ID]を自分のGCPプロジェクトIDに置換します。
+pom.xmlの[YOUR_PROJECT_ID]を自分のGCPプロジェクトIDに置換します。
 ```
 <properties>
     ...省略...
+    
     <appengine.project.id>[YOUR_PROJECT_ID]</appengine.project.id>
     <appengine.project.version>v100-alpha1</appengine.project.version>
     <proxy.server.url>https://proxy-dot-${appengine.project.id}.appspot.com/predict</proxy.server.url>
