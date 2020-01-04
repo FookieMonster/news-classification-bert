@@ -1,6 +1,6 @@
 # news-classification-bert
 
-## 説明
+## 概要
 BERTを使って日本語ニュース記事をテキスト分類するデモWebアプリケーションです。 
 
 ## デモサイト
@@ -22,7 +22,7 @@ https://web-dot-news-classification-2020.appspot.com/
 | Webバックエンド |	App Engine + Cloud Endpoints（Java） |
 | Webフロントエンド | Angular（TypeScript） |
 
-## アーキテクチャ概要図
+## アーキテクチャの概要図
 ![architecture-1st-draft](https://user-images.githubusercontent.com/7298626/71759862-48b76600-2ef7-11ea-80a6-2ad358643e18.png)
 
 ## ソースコードの概要
