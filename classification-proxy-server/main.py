@@ -6,7 +6,7 @@ from googleapiclient import discovery
 from oauth2client.client import GoogleCredentials
 from feature import convert_text_to_features
 
-PROJECT_ID = 'news-classification-2020'
+PROJECT_ID = '[YOUR_PROJECT_ID]'
 MODEL_NAME = 'news_classification'
 MODEL_VERSION = 'v1'
 
