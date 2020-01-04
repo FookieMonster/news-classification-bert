@@ -65,9 +65,7 @@ export class NewsTableComponent implements OnInit {
       { name: 'トレーニング環境', value: 'AI Platform Notebooks（Tesla K80）' },
       { name: 'モデルサーバ', value: 'AI Platform Prediction（TensorFlow 1.14.0）' },
       { name: 'モデルマシンタイプ', value: 'n1-standard-2' },
-      { name: 'モデル名', value: 'news_classification' },
-      { name: 'モデルバージョン', value: 'v1' },
-      { name: 'モデルAPIエンドポイント（REST/JSON）', value: 'https://ml.googleapis.com/v1/projects/${appengine.project.id}/models/news_classification/versions/v1:predict' },
+      { name: 'モデル名 / バージョン', value: 'news_classification / v1' },
       { name: 'Webバックエンド', value: 'App Engine + Cloud Endpoints（Java）' },
       { name: 'Webフロントエンド', value: 'Angular（TypeScript）' },
     ];
