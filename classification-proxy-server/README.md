@@ -1,8 +1,6 @@
 # classification-proxy-server
 
-## ビルドとデプロイ
-
-ビルドするには以下のソフトウェアが必要です。
+以下のソフトウェアが必要です。
 - Google Cloud SDK
 - gcloud コマンドライン ツール（gcloud CLI）
 
