@@ -7,6 +7,7 @@
 - Google Cloud SDK
 - gcloud コマンドライン ツール（gcloud CLI）
 
+### pom.xmlの編集
 pom.xmlの[YOUR_PROJECT_ID]を自分のGCPプロジェクトIDに置換します。
 ```
 <properties>
