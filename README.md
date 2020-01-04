@@ -20,7 +20,6 @@ https://web-dot-news-classification-2020.appspot.com/
 | モデルマシンタイプ |	n1-standard-2 |
 | モデル名 | news_classification |
 | モデルバージョン | v1 |
-| モデルAPIエンドポイント（REST/JSON） | https://ml.googleapis.com/v1/projects/news-classification-2020/models/news_classification/versions/v1:predict |
 | Webバックエンド |	App Engine + Cloud Endpoints（Java） |
 | Webフロントエンド | Angular（TypeScript） |
 
