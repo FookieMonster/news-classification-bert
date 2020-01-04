@@ -381,8 +381,8 @@ class ColaProcessor(DataProcessor):
     return examples
 
 
-class JpProcessor(DataProcessor):
-  """Processor for the Japanese data set."""
+class JpNewsProcessor(DataProcessor):
+  """Processor for the Japanese News data set."""
 
   def read_tsv(self, path):
     df = pd.read_csv(path, sep="\t")
@@ -833,7 +833,7 @@ def main(_):
       "mnli": MnliProcessor,
       "mrpc": MrpcProcessor,
       "xnli": XnliProcessor,
-      "jp": JpProcessor,
+      "jpnews": JpNewsProcessor,
   }
 
   tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,
@@ -1018,18 +1018,6 @@ def main(_):
     assert num_written_lines == num_actual_predict_examples
     
   if FLAGS.do_export:
-    def example_serving_input_fn():
-        feature_spec = {
-          "input_ids": tf.FixedLenFeature([FLAGS.max_seq_length], tf.int64),
-          "input_mask": tf.FixedLenFeature([FLAGS.max_seq_length], tf.int64),
-          "segment_ids": tf.FixedLenFeature([FLAGS.max_seq_length], tf.int64),
-          "label_ids": tf.FixedLenFeature([], tf.int64),
-        }
-        serialized_tf_example = tf.placeholder(dtype=tf.string, shape=None, name='input_string_text')
-        receiver_tensors = {'examples': serialized_tf_example}
-        features = tf.parse_example(serialized_tf_example, feature_spec)
-        return tf.estimator.export.ServingInputReceiver(features, receiver_tensors)
-    
     def json_serving_input_fn():
         inputs = {}
         inputs["input_ids"] = tf.placeholder(shape=[None, FLAGS.max_seq_length], dtype=tf.int64)
