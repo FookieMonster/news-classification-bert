@@ -25,7 +25,7 @@ $ git clone https://github.com/FookieMonster/news-classification-bert.git
   <dd>予測リクエスト用のjsonファイルを作成するコードです。テキストを単語埋め込みベクトルに変換します。</dd>
 </dl>
 
-## run_classifier.pyの修正箇所
+## トレーニングスクリプト（run_classifier.py）の修正箇所
 
 ### DataProcessorの追加
 BERT公式の再学習用トレーニングスクリプト（run_classifier.py）は標準でMRPCやCoLAなどのデータセットのみに対応しているので、独自のデータセットで再学習したい場合は自分でDataProcessorを追加する必要があります。今回はJpNewsProcessorを追加しています。
