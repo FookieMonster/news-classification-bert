@@ -2,7 +2,9 @@
 
 ### トレーニング環境
 - AI Platform Notebooks
-- GPU: Tesla K80 x 1
+- Machine type: 4 vCPUs, 15 GB RAM
+- GPU: NVIDIA Tesla K80 x 1
+- Tensorflow Enterprise 1.15
 
 ### 概要
 <dl>
