@@ -95,3 +95,23 @@ if FLAGS.do_export:
   estimator._export_to_tpu = False
   estimator.export_saved_model("./saved_model", json_serving_input_fn)
 ```
+
+```Shell
+# SavedModel形式でモデルをエクスポート
+TASK = 'JpNews'
+BERT_BASE_DIR = 'bert_checkpoint/multi_cased_L-12_H-768_A-12'
+GLUE_DIR = 'news_data'
+OUTPUT_DIR = 'output_news'
+TRAINED_CLASSIFIER = 'output_news'
+
+! python3 ./bert_repo/run_classifier.py \
+  --task_name=$TASK \
+  --do_export=true \            <<============================= 追加
+  --do_lower_case=False \
+  --data_dir=$GLUE_DIR \
+  --vocab_file=$BERT_BASE_DIR/vocab.txt \
+  --bert_config_file=$BERT_BASE_DIR/bert_config.json \
+  --init_checkpoint=$TRAINED_CLASSIFIER \
+  --max_seq_length=128 \
+  --output_dir=$OUTPUT_DIR
+```
