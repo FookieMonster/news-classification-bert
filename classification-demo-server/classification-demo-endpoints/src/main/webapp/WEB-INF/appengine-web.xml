@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+
+    <!-- We do not specify the module name so this is the default module. -->
+    <!--module>default</module-->
+
+    <application>endpoints</application>
+    <version>${appengine.project.version}</version>
+    <runtime>java8</runtime>
+    <threadsafe>true</threadsafe>
+    <instance-class>F1</instance-class>
+
+    <system-properties>
+        <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+    </system-properties>
+
+    <env-variables>
+        <env-var name="ENDPOINTS_SERVICE_NAME" value="${appengine.project.id}.appspot.com"/>
+    </env-variables>
+
+</appengine-web-app>
