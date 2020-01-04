@@ -1,5 +1,11 @@
 # classification-proxy-server
 
+## ビルドとデプロイ
+
+ビルドするには以下のソフトウェアが必要です。
+- Google Cloud SDK
+- gcloud コマンドライン ツール（gcloud CLI）
+
 ### GCPプロジェクトIDの編集
 main.pyの[YOUR_PROJECT_ID]を自分のGCPプロジェクトIDに置換します。
 ```
