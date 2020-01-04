@@ -6,7 +6,16 @@
 - GPU: NVIDIA Tesla K80 x 1
 - Tensorflow Enterprise 1.15
 
-### 概要
+### 実行手順
+1. GoogleのAI Platformの管理コンソールにログイン
+2. 新しいノートブックインスタンスを作成して開始
+3. ノートブックインスタンス内でコンソール画面を起動
+4. このリポジトリをクローン
+```
+$ git clone https://github.com/FookieMonster/news-classification-bert.git
+```
+
+### ノートブックの概要
 <dl>
   <dt>bert-fine-tuning.ipynb</dt>
   <dd>日本語ニュース記事で再学習させるコードです。</dd>
