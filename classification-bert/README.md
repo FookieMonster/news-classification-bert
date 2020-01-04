@@ -9,7 +9,7 @@
 ### 実行手順
 1. GoogleのAI Platformの管理コンソールにログイン
 2. 新しいノートブックインスタンスを作成して開始
-3. ノートブックインスタンス内でコンソール画面を起動
+3. ノートブックインスタンス内でターミナルを起動
 4. このリポジトリをクローン
 ```
 $ git clone https://github.com/FookieMonster/news-classification-bert.git
