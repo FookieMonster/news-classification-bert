@@ -1,12 +1,12 @@
 # classification-bert
 
-### トレーニング環境
+## トレーニング環境
 - AI Platform Notebooks
 - Machine type: 4 vCPUs, 15 GB RAM
 - GPU: NVIDIA Tesla K80 x 1
 - Tensorflow Enterprise 1.15
 
-### 実行手順
+## 実行手順
 1. GoogleのAI Platformの管理コンソールにログイン
 2. 新しいノートブックインスタンスを作成して開始
 3. ノートブックインスタンス内でターミナルを起動
@@ -15,7 +15,7 @@
 $ git clone https://github.com/FookieMonster/news-classification-bert.git
 ```
 
-### ノートブックの概要
+## ノートブックの概要
 <dl>
   <dt>bert-fine-tuning.ipynb</dt>
   <dd>日本語ニュース記事で再学習させるコードです。</dd>
@@ -25,9 +25,9 @@ $ git clone https://github.com/FookieMonster/news-classification-bert.git
   <dd>予測リクエスト用のjsonファイルを作成するコードです。テキストを単語埋め込みベクトルに変換します。</dd>
 </dl>
 
-### run_classifier.pyの修正箇所
+## run_classifier.pyの修正箇所
 
-#### DataProcessorの追加
+### DataProcessorの追加
 BERT公式の再学習用トレーニングスクリプト（run_classifier.py）は標準でMRPCやCoLAなどのデータセットのみに対応しているので、独自のデータセットで再学習したい場合は自分でDataProcessorを追加する必要があります。今回はJpNewsProcessorを追加しています。
 
 ```Python
@@ -79,7 +79,7 @@ class JpNewsProcessor(DataProcessor):
     return examples
 ```
 
-#### do_exportオプションの追加
+### do_exportオプションの追加
 AI Platform Predictionのモデルサーバにデプロイするには、TensorflowのSavedModel形式でモデルをエクスポートする必要があるので、do_exportというオプションを追加しています。
 
 ```Python
