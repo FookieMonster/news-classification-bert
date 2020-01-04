@@ -25,4 +25,6 @@ https://web-dot-news-classification-2020.appspot.com/
 | Webバックエンド |	App Engine + Cloud Endpoints（Java） |
 | Webフロントエンド | Angular（TypeScript） |
 
-## アーキテクチャ
+## アーキテクチャ概要図
+
+![architecture-1st-draft](https://user-images.githubusercontent.com/7298626/71759862-48b76600-2ef7-11ea-80a6-2ad358643e18.png)
