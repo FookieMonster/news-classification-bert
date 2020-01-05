@@ -17,8 +17,6 @@ https://web-dot-news-classification-2020.appspot.com/
 | トレーニングスクリプト |	run_classifier.py（一部改変） |
 | トレーニング環境 | AI Platform Notebooks（Tesla K80） |
 | モデルサーバ | AI Platform Prediction（TensorFlow 1.14.0） |
-| モデルマシンタイプ |	n1-standard-2 |
-| モデル名 / バージョン | news_classification / v1 |
 | Webバックエンド |	App Engine + Cloud Endpoints（Java） |
 | Webフロントエンド | Angular（TypeScript） |
 
