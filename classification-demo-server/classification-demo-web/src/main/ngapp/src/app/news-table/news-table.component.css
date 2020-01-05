@@ -4,3 +4,11 @@
 .newssites button {
   margin: 16px;
 }
+
+.icon {
+  vertical-align: middle;
+}
+
+.link {
+  margin: 6px;
+}
