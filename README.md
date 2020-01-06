@@ -14,7 +14,7 @@ https://web-dot-news-classification-2020.appspot.com/
 | --- | --- |
 | 事前学習済み言語モデル |	BERT: multi_cased_L-12_H-768_A-12.zip（多言語版） |
 | 再学習データセット |	livedoor ニュースコーパス: ldcc-20140209.tar.gz（2012年9月上旬） |
-| トレーニングスクリプト |	run_classifier.py（一部改変） |
+| トレーニングスクリプト |	run_classifier.py（[一部改変](https://github.com/FookieMonster/news-classification-bert/tree/master/classification-bert#%E3%83%88%E3%83%AC%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88run_classifierpy%E3%81%AE%E4%BF%AE%E6%AD%A3%E7%AE%87%E6%89%80)） |
 | トレーニング環境 | AI Platform Notebooks（Tesla K80） |
 | モデルサーバ | AI Platform Prediction（TensorFlow 1.14.0） |
 | Webバックエンド |	App Engine + Cloud Endpoints（Java） |
