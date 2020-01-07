@@ -1,8 +1,7 @@
 # classification-proxy-server
 
 以下のソフトウェアが必要です。
-- Google Cloud SDK
-- gcloud コマンドライン ツール（gcloud CLI）
+- Google Cloud SDK (gcloud コマンドラインツール)
 
 ### GCPプロジェクトIDの編集
 main.pyの[YOUR_PROJECT_ID]を自分のGCPプロジェクトIDに置換します。
