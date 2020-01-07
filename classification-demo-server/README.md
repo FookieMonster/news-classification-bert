@@ -11,7 +11,6 @@ pom.xmlの[YOUR_PROJECT_ID]を自分のGCPプロジェクトIDに置換します
 ```
 <properties>
     ...省略...
-    
     <appengine.project.id>[YOUR_PROJECT_ID]</appengine.project.id>
     <appengine.project.version>v100-alpha1</appengine.project.version>
     <proxy.server.url>https://proxy-dot-${appengine.project.id}.appspot.com/predict</proxy.server.url>
@@ -24,13 +23,19 @@ pom.xmlの[YOUR_PROJECT_ID]を自分のGCPプロジェクトIDに置換します
 $ mvn clean install
 ```
 
-### EARアプリのデプロイ (App Engine for Java)
+### EARファイルのデプロイ (App Engine for Java)
 ```
 $ mvn appengine:update -pl classification-demo
 ```
 
-### APIの生成＆デプロイ (Cloud Endpoints)
+### エンドポイントの作成＆デプロイ (Cloud Endpoints)
 ```
 $ mvn endpoints-framework:openApiDocs -pl classification-demo-endpoints
 $ gcloud endpoints services deploy classification-demo-endpoints/target/openapi-docs/openapi.json
+```
+
+### アクセスURL
+EARファイルのデプロイとエンドポイントのデプロイが正常に完了すると、以下のURLでWebフロントエンドにアクセスできるはずです。
+```
+https://web-dot-[YOUR_PROJECT_ID].appspot.com/
 ```
