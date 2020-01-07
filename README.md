@@ -3,6 +3,8 @@
 ## 概要
 BERTを使って日本語ニュース記事をテキスト分類するデモWebアプリケーションです。 
 
+このプロジェクトは[DL4US](https://deeplearning.jp/lectures/dl4us_3rd/)の第3期の最終課題で開発したものです。
+
 ## デモサイト
 https://web-dot-news-classification-2020.appspot.com/
 
