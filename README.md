@@ -11,7 +11,7 @@ https://web-dot-news-classification-2020.appspot.com/
 ## スクリーンショット
 ![スクリーンショット 2020-01-03 16 18 08](https://user-images.githubusercontent.com/7298626/71711638-35e45900-2e45-11ea-8523-3b1341d46781.png)
 
-## システムの概要
+## デモシステムの概要
 | 項目 |  |
 | --- | --- |
 | 事前学習済み言語モデル |	BERT: multi_cased_L-12_H-768_A-12.zip（多言語版） |
