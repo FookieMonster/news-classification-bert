@@ -35,7 +35,7 @@ $ gcloud endpoints services deploy classification-demo-endpoints/target/openapi-
 ```
 
 ### アクセスURL
-EARファイルのデプロイとエンドポイントのデプロイが正常に完了すると、以下のURLでWebフロントエンドにアクセスできるはずです。
+EARファイルとエンドポイントのデプロイが完了すると、以下のURLでWebフロントエンドにアクセスできるはずです。
 ```
 https://web-dot-[YOUR_PROJECT_ID].appspot.com/
 ```
