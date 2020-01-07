@@ -4,8 +4,7 @@
 
 ビルドするには以下のソフトウェアが必要です。
 - Maven
-- Google Cloud SDK
-- gcloud コマンドライン ツール（gcloud CLI）
+- Google Cloud SDK (gcloud コマンドラインツール)
 
 ### GCPプロジェクトIDの編集
 pom.xmlの[YOUR_PROJECT_ID]を自分のGCPプロジェクトIDに置換します。
