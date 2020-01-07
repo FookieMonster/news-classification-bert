@@ -28,7 +28,7 @@ $ mvn clean install
 $ mvn appengine:update -pl classification-demo
 ```
 
-### エンドポイントの作成＆デプロイ (Cloud Endpoints)
+### エンドポイントデプロイ (Cloud Endpoints)
 ```
 $ mvn endpoints-framework:openApiDocs -pl classification-demo-endpoints
 $ gcloud endpoints services deploy classification-demo-endpoints/target/openapi-docs/openapi.json
