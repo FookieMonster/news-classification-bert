@@ -18,11 +18,11 @@ $ git clone https://github.com/FookieMonster/news-classification-bert.git
 ## ノートブックの概要
 <dl>
   <dt>bert-fine-tuning.ipynb</dt>
-  <dd>日本語ニュース記事で再学習させるコードです。</dd>
+  <dd>BERTの事前学習済み言語モデルを日本語ニュース記事で再学習させるコードです。</dd>
   <dt>bert-model-deploy.ipynb</dt>
   <dd>エクスポートしたSavedModel形式のモデルをモデルサーバにデプロイするコードです。</dd>
   <dt>convert-text-to-features.ipynb</dt>
-  <dd>予測リクエスト用のjsonファイルを作成するコードです。テキストを単語埋め込みベクトルに変換します。</dd>
+  <dd>予測リクエスト用のjsonファイルを作成するコードです。テキストをトークンIDに変換します。</dd>
 </dl>
 
 ## トレーニングスクリプト（run_classifier.py）の修正箇所
