@@ -33,9 +33,9 @@ https://web-dot-news-classification-2020.appspot.com/
   <dt>classification-demo-server（App Engine for Java用）</dt>
   <dd>デモアプリケーションのWebバックエンドとWebフロントエンドのコードが含まれます。</dd>
   <dt>classification-proxy-server（App Engine for Python用）</dt>
-  <dd>モデルサーバに予測リクエストを送る前に、前処理（テキスト->トークンID変換）を行うプロキシーです。</dd>
+  <dd>モデルサーバに予測リクエストを送る前に、前処理（テキスト->トークンID変換）を行うプロキシーです。※1</dd>
 </dl>
 
->AI Platform Predictionにはカスタム予測ルーチンという仕組みで前処理をモデルサーバー側に含ませることができるのですが、カスタム予測ルーチンはβ版でモデルサイズ500MB以下の制限があるので今回は使用することができませんでした。なので今回は前処理を行うだけのPythonプロキシー環境を設置することにしました。
+※1 AI Platform Predictionにはカスタム予測ルーチンという仕組みで前処理をモデルサーバー側に含ませることができるのですが、カスタム予測ルーチンはβ版でモデルサイズ500MB以下の制限があるので今回は使用することができませんでした。なので今回は前処理を行うだけのPythonプロキシー環境を設置することにしました。
 
 詳細は各プロジェクト配下のREADME.mdファイルを参照してください。
