@@ -33,7 +33,7 @@ https://web-dot-news-classification-2020.appspot.com/
   <dt>classification-demo-server（App Engine for Java用）</dt>
   <dd>デモアプリケーションのWebバックエンドとWebフロントエンドのコードが含まれます。</dd>
   <dt>classification-proxy-server（App Engine for Python用）</dt>
-  <dd>モデルサーバに予測リクエストを送る前に、前処理（テキスト->トークンID変換）を行うプロキシーです。(※1)</dd>
+  <dd>モデルサーバに予測リクエストを送る前に、前処理を行うプロキシーです。(※1)</dd>
 </dl>
 
 詳細は各プロジェクト配下のREADME.mdファイルを参照してください。
