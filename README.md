@@ -29,9 +29,9 @@ https://web-dot-news-classification-2020.appspot.com/
 このリポジトリは以下の３つのプロジェクトから構成されています。
 <dl>
   <dt>classification-bert（AI Platform Notebooks用）</dt>
-  <dd>BERTの事前学習済みモデルを使って日本語ニュース記事のテキスト分類に再学習させるコードが含まれます。</dd>
+  <dd>BERTの事前学習済みモデルを日本語ニュース記事のテキスト分類に再学習するノートブックコードが含まれます。</dd>
   <dt>classification-demo-server（App Engine for Java用）</dt>
-  <dd>デモアプリケーションのWebバックエンドとWebフロントエンドのコードが含まれます。</dd>
+  <dd>デモアプリケーションのWebバックエンド(Java)とWebフロントエンド(TypeScript)のコードが含まれます。</dd>
   <dt>classification-proxy-server（App Engine for Python用）</dt>
   <dd>モデルサーバに予測リクエストを送る前に、前処理を行うプロキシーです。(※1)</dd>
 </dl>
