@@ -25,7 +25,7 @@ https://web-dot-news-classification-2020.appspot.com/
 ## アーキテクチャの概要図
 ![architecture-1st-draft](https://user-images.githubusercontent.com/7298626/71759862-48b76600-2ef7-11ea-80a6-2ad358643e18.png)
 
-#### アーキテクチャの特徴
+### アーキテクチャの特徴
 
 - <sub>データサイエンティスト、Webフロントエンド、Webバックエンドの３人のエンジニアで開発することを想定</sub>
 - <sub>３人はREST-APIで疎結合なので同時並行して開発が可能</sub>
