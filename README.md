@@ -30,7 +30,7 @@ https://web-dot-news-classification-2020.appspot.com/
   <dt>REST API</dt>
   <dd>フロントエンド側はAPIベースなのでWebだけではなく、スマホアプリ(Android/iOS)にも簡単に対応できる。</dd>
   <dt>PaaS / NoOps</dt>
-  <dd>バックエンド側はPaaSベースなのでインフラの管理や運用ではなく、アプリ開発に専念できる。</dd>
+  <dd>バックエンド側はPaaSベースなのでインフラの管理や運用ではなく、アプリケーション開発に専念できる。</dd>
   <dt>Auto Scaling</dt>
   <dd>バックエンド側はオートスケーリングなのでユーザーがいない時の運用コストが低い。<br>
     オートスケーリングなので急激なユーザ数の増加に短時間で対応できる。</dd>
