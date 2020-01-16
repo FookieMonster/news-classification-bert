@@ -27,13 +27,13 @@ https://web-dot-news-classification-2020.appspot.com/
 
 ### アーキテクチャの特徴
 <dl>
-  <dt>API Base</dt>
+  <dt>REST API</dt>
   <dd>フロントエンド側はAPIベースなのでWebだけではなく、スマホアプリ(Android/iOS)にも簡単に対応できる。</dd>
-  <dt>NoOps / PaaS</dt>
+  <dt>PaaS / NoOps</dt>
   <dd>バックエンド側はPaaSベースなのでインフラの管理や運用ではなく、アプリ開発に専念できる。</dd>
   <dt>Auto Scaling</dt>
   <dd>バックエンド側はオートスケーリングなのでユーザーがいない時の運用コストが低い。<br>
-    オートスケーリングなので急激なユーザ数の増加に短時間で対応できる</dd>
+    オートスケーリングなので急激なユーザ数の増加に短時間で対応できる。</dd>
   <dt>Loose Coupling</dt>
   <dd>データサイエンティスト、Webフロントエンド、Webバックエンドの３人のエンジニアで開発することを想定。<br>
     ３人はREST-APIで疎結合なので同時並行して開発が可能なので開発期間を短縮できる。</dd>
