@@ -23,7 +23,7 @@ https://web-dot-news-classification-2020.appspot.com/
 | Webフロントエンド | Angular（TypeScript） |
 
 ## アーキテクチャの概要図
-![architecture-1st-draft](https://user-images.githubusercontent.com/7298626/71759862-48b76600-2ef7-11ea-80a6-2ad358643e18.png)
+![archtecture-2nd-draft](https://user-images.githubusercontent.com/7298626/72593142-94323100-3947-11ea-86a9-1b05cad0d1c6.png)
 
 ### アーキテクチャの特徴
 <dl>
