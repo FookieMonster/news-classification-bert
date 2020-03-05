@@ -1,14 +1,22 @@
+import unittest
 #import tokenization
 import tokenization_chinese
 
-def convert_text_to_features(text, label, label_list, max_seq_length, vocab_file):
-    text_a = tokenization_chinese.convert_to_unicode(text)
-    label_a = tokenization_chinese.convert_to_unicode(label)
 
-    example = InputExample(guid="", text_a=text_a, text_b=None, label=label_a)
-    tokenizer = tokenization_chinese.FullTokenizer(vocab_file=vocab_file, do_lower_case=False)
-    features = convert_single_example(0, example, label_list, max_seq_length, tokenizer)
-    return features
+class TestFeatures(unittest.TestCase):
+
+    def test_features(self):
+        text_a = tokenization_chinese.convert_to_unicode("急速充電や大容量バッテリー、エコナビ対応のXi対応ドコモスマホ「ELUGA power P-07D」の気になる価格は？")
+        label = tokenization_chinese.convert_to_unicode("0")
+        labels = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+
+        example = InputExample(guid="", text_a=text_a, text_b=None, label=label)
+        tokenizer = tokenization_chinese.FullTokenizer(vocab_file='../vocab_chinese.txt', do_lower_case=False)
+        feature = convert_single_example(0, example, labels, 128, tokenizer)
+
+        json_str = '{{"input_ids":{0},"input_mask":{1},"segment_ids":{2},"label_ids":{3}}}' \
+            .format(feature.input_ids, feature.input_mask, feature.segment_ids, [feature.label_id])
+        print(json_str)
 
 
 class InputExample(object):
@@ -149,3 +157,7 @@ def convert_single_example(ex_index, example, label_list, max_seq_length,
       label_id=label_id,
       is_real_example=True)
   return feature
+
+
+if __name__ == '__main__':
+    unittest.main()
