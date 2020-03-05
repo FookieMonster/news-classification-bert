@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.fookiemonsters.demo</groupId>
     <artifactId>classification-demo-server</artifactId>
-    <version>1.0.0.Alpha1-SNAPSHOT</version>
+    <version>1.1.0.Alpha1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -32,7 +32,7 @@
         <rome.version>1.0</rome.version>
 
         <appengine.project.id>[YOUR_PROJECT_ID]</appengine.project.id>
-        <appengine.project.version>v100-alpha1</appengine.project.version>
+        <appengine.project.version>v110-alpha1</appengine.project.version>
         <proxy.server.url>https://proxy-dot-${appengine.project.id}.appspot.com/predict</proxy.server.url>
         <angular.build.environment>prod</angular.build.environment>
     </properties>

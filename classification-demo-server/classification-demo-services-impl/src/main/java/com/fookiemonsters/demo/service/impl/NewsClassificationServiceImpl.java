@@ -64,11 +64,11 @@ public class NewsClassificationServiceImpl
 
 			String title = titles.get(i);
 			String jsonl = lines.get(i);
-			List<Float> predictions = parserPrediction(jsonl);
+			List<Float> probabilities = parserprobabilities(jsonl);
 
 			results.add(NewsClassificationResult
-					.createNewsClassificationResult(title, argmax(predictions),
-							predictions));
+					.createNewsClassificationResult(title, argmax(probabilities),
+							probabilities));
 		}
 
 		NewsClassificationResponse response = new NewsClassificationResponse();
@@ -91,11 +91,11 @@ public class NewsClassificationServiceImpl
 		return Lists.newArrayList(lines);
 	}
 
-	private List<Float> parserPrediction(String jsonl) {
+	private List<Float> parserprobabilities(String jsonl) {
 
 		JsonParser parser = new JsonParser();
-		JsonObject predObj = parser.parse(jsonl).getAsJsonObject();
-		JsonArray predArray = predObj.getAsJsonArray("prediction");
+		JsonObject predObj = parser.parse(jsonl).getAsJsonObject().getAsJsonObject("prediction");
+		JsonArray predArray = predObj.getAsJsonArray("probabilities");
 		return arrayToList(predArray);
 	}
 
