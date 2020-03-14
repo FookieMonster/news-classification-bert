@@ -1,17 +1,17 @@
 import unittest
 #import tokenization
-import tokenization_chinese
+import tokenization_v2
 
 
 class TestFeatures(unittest.TestCase):
 
     def test_features(self):
-        text_a = tokenization_chinese.convert_to_unicode("急速充電や大容量バッテリー、エコナビ対応のXi対応ドコモスマホ「ELUGA power P-07D」の気になる価格は？")
-        label = tokenization_chinese.convert_to_unicode("0")
+        text_a = tokenization_v2.convert_to_unicode("急速充電や大容量バッテリー、エコナビ対応のXi対応ドコモスマホ「ELUGA power P-07D」の気になる価格は？")
+        label = tokenization_v2.convert_to_unicode("0")
         labels = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
 
         example = InputExample(guid="", text_a=text_a, text_b=None, label=label)
-        tokenizer = tokenization_chinese.FullTokenizer(vocab_file='../vocab_chinese.txt', do_lower_case=False)
+        tokenizer = tokenization_v2.FullTokenizer(vocab_file='../vocab.txt', do_lower_case=False)
         feature = convert_single_example(0, example, labels, 128, tokenizer)
 
         json_str = '{{"input_ids":{0},"input_mask":{1},"segment_ids":{2},"label_ids":{3}}}' \

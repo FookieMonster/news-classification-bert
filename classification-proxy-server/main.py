@@ -13,7 +13,7 @@ MODEL_VERSION = 'v2'
 FEATURES_FORMAT = '{{"input_ids": {0}, "input_mask": {1}, "segment_ids": {2}, "label_ids":{3}}}'
 LABELS = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
 MAX_SEQ_LEN = 128
-VOCAB_FILE = 'vocab_chinese.txt'
+VOCAB_FILE = 'vocab.txt'
 
 app = Flask(__name__)
 

@@ -20,7 +20,7 @@ class TestPrediction(unittest.TestCase):
 
         for text in input_df['text']:
             features = convert_text_to_features(text=text, label=label, label_list=labels,
-                                                        max_seq_length=max_seq_length, vocab_file='../vocab_chinese.txt')
+                                                        max_seq_length=max_seq_length, vocab_file='../vocab.txt')
             json_str = '{{"input_ids":{0},"input_mask":{1},"segment_ids":{2},"label_ids":{3}}}' \
                 .format(features.input_ids, features.input_mask, features.segment_ids, [features.label_id])
             instance = json.loads(json_str)

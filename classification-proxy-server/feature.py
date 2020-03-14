@@ -1,12 +1,12 @@
 #import tokenization
-import tokenization_chinese
+import tokenization_v2
 
 def convert_text_to_features(text, label, label_list, max_seq_length, vocab_file):
-    text_a = tokenization_chinese.convert_to_unicode(text)
-    label_a = tokenization_chinese.convert_to_unicode(label)
+    text_a = tokenization_v2.convert_to_unicode(text)
+    label_a = tokenization_v2.convert_to_unicode(label)
 
     example = InputExample(guid="", text_a=text_a, text_b=None, label=label_a)
-    tokenizer = tokenization_chinese.FullTokenizer(vocab_file=vocab_file, do_lower_case=False)
+    tokenizer = tokenization_v2.FullTokenizer(vocab_file=vocab_file, do_lower_case=False)
     features = convert_single_example(0, example, label_list, max_seq_length, tokenizer)
     return features
 
