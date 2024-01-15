@@ -1,9 +1,7 @@
 # news-classification-bert
 
 ## 概要
-BERTを使って日本語ニュース記事をテキスト分類するデモWebアプリケーションです。 
-
-BERTを使ったWebアプリ開発のリファレンス実装として誰かの参考になれば幸いです。  
+BERTを使って日本語ニュース記事をテキスト分類するWebアプリケーションです。  
 
 このプロジェクトは[DL4US](https://deeplearning.jp/lectures/dl4us_3rd/)の第3期の最終課題で開発したものです。
 
